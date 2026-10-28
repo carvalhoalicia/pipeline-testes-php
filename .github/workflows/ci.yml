@@ -1,0 +1,25 @@
+
+name: Testes Automatizados
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Instalar dependencias
+        run: composer install
+
+      - name: Executar testes
+        run: composer test
